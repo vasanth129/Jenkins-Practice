@@ -44,7 +44,7 @@ pipeline{
         stage('Validate Apply and Destroy'){
 	        steps{
 		        script {
-			        if(params.plan_tf && params.apply_tf){
+			        if(params.destroy_tf && params.apply_tf){
 				        error 'Connot run terraform apply and destroy in the same build'
 			        }
                     else{
@@ -57,7 +57,7 @@ pipeline{
         stage('Approval'){
             steps{
                 script{
-                    if(plan_tf || apply_tf){
+                    if(destroy_tf || apply_tf){
                         input message : "Approve Terraform Apply/Destroy?"
                     }
                     else{
