@@ -57,7 +57,7 @@ pipeline{
         stage('Approval'){
             steps{
                 script{
-                    if(destroy_tf || apply_tf){
+                    if(params.destroy_tf || params.apply_tf){
                         input message : "Approve Terraform Apply/Destroy?"
                     }
                     else{
