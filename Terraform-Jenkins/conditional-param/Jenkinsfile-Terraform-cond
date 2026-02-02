@@ -10,6 +10,10 @@ pipeline{
 
     stages{
 
+        stage('git checkout'){
+            git branch: main, url: "https://github.com/vasanth129/terraform-practice.git"
+        }
+
         stage('Terraform Init'){
             when {
                 expression{ params.init_tf }
