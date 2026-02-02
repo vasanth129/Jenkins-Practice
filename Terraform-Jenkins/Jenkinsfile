@@ -20,15 +20,15 @@ pipeline {
         stage('Terraform plan'){
             steps {
                 dir ("day-2-tfvars"){
-                    sh '${params.plan} ? terraform plan : echo Skip'
+                    sh 'terraform plan'
                 }
             }
         }
-
-        stage('Terraform apply'){
+        // use choice parameter 'action'
+        stage('Terraform apply/destroy'){
             steps {
                 dir ("day-2-tfvars"){
-                    sh '${params.apply} ? terraform apply -auto-approve : echo Skip'
+                    sh 'terraform ${action} -auto-approve'
                 }
             }
         }
