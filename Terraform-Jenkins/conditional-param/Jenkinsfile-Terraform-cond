@@ -47,6 +47,9 @@ pipeline{
 			        if(params.plan_tf && params.apply_tf){
 				        error 'Connot run terraform apply and destroy in the same build'
 			        }
+                    else{
+                        echo "Apply and Destroy Validation pass, skipping..."
+                    }
 		        }
 	        }
         }
