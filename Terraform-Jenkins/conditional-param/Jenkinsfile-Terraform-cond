@@ -1,0 +1,61 @@
+pipeline{
+    agent any
+
+    parameters{
+        booleanParam(name:'init_tf', defaultValue:true),
+        booleanParam(name:'plan_tf', defaultValue:true),
+        booleanParam(name:'apply_tf', defaultValue:true),
+        booleanParam(name:'destroy_tf', defaultValue:true),
+    }
+
+    stages{
+
+        stage('Terraform Init'){
+            when {
+                expression{ params.init_tf }
+            }
+
+            steps{
+                dir("day-2-tfvars"){
+                    sh "terraform init"
+                }
+            }
+        }
+
+        stage('Terraform Plan'){
+            when {
+                expression{ params.plan_tf }
+            }
+
+            steps{
+                dir("day-2-tfvars"){
+                    sh "terraform plan"
+                }
+            }
+        }
+
+        stage('Terraform Apply'){
+            when {
+                expression{ params.apply_tf }
+            }
+
+            steps{
+                dir("day-2-tfvars"){
+                    sh "terraform apply -auto-approve"
+                }
+            }
+        }
+
+        stage('Terraform Destroy'){
+            when {
+                expression{ params.destroy_tf }
+            }
+
+            steps{
+                dir("day-2-tfvars"){
+                    sh "terraform destroy -auto-approve"
+                }
+            }
+        }
+    }
+}
