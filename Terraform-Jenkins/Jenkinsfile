@@ -2,28 +2,34 @@ pipeline {
     agent any
 
     stages {
-        stage('git checkout'){
-            steps {
-                git branch: 'main',
-                url: 'https://github.com/vasanth129/terraform-practice.git'
-            }
-        }
+        // stage('git checkout'){
+        //     steps {
+        //         git branch: 'main',
+        //         url: 'https://github.com/vasanth129/terraform-practice.git'
+        //     }
+        // }
 
         stage('Terraform Init'){
             steps {
-                sh 'terraform init'
+                dir ("day-2-tfvars"){
+                    sh 'terraform init'
+                }
             }
         }
 
         stage('Terraform plan'){
             steps {
-                sh 'terraform plan'
+                dir ("day-2-tfvars"){
+                    sh 'terraform plan'
+                }
             }
         }
 
         stage('Terraform apply'){
             steps {
-                sh 'terraform apply -auto-approve'
+                dir ("day-2-tfvars"){
+                    sh 'terraform apply -auto-approve'
+                }
             }
         }
 
