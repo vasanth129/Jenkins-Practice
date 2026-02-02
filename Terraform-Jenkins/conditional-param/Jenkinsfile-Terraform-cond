@@ -2,10 +2,10 @@ pipeline{
     agent any
 
     parameters{
-        booleanParam(name:'init_tf', defaultValue:true),
-        booleanParam(name:'plan_tf', defaultValue:true),
-        booleanParam(name:'apply_tf', defaultValue:true),
-        booleanParam(name:'destroy_tf', defaultValue:true),
+        booleanParam(name:'init_tf', defaultValue:true)
+        booleanParam(name:'plan_tf', defaultValue:true)
+        booleanParam(name:'apply_tf', defaultValue:true)
+        booleanParam(name:'destroy_tf', defaultValue:true)
     }
 
     stages{
