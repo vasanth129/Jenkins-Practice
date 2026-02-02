@@ -2,12 +2,12 @@ pipeline {
     agent any
 
     stages {
-        // stage('git checkout'){
-        //     steps {
-        //         git branch: 'main',
-        //         url: 'https://github.com/vasanth129/terraform-practice.git'
-        //     }
-        // }
+        stage('git checkout'){
+            steps {
+                git branch: 'main',
+                url: 'https://github.com/vasanth129/terraform-practice.git'
+            }
+        }
 
         stage('Terraform Init'){
             steps {
