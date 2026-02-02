@@ -41,6 +41,16 @@ pipeline{
             }
         }
 
+        stage('Validate Apply and Destroy'){
+	        steps{
+		        script {
+			        if(params.plan_tf && params.test_tf){
+				        error 'Connot run terraform apply and destroy in the same build'
+			        }
+		        }
+	        }
+        }
+
         stage('Terraform Apply'){
             when {
                 expression{ params.apply_tf }
