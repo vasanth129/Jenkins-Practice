@@ -51,6 +51,19 @@ pipeline{
 	        }
         }
 
+        stage('Approval'){
+            steps{
+                script{
+                    if(plan_tf || apply_tf){
+                        input message : "Approve Terraform Apply/Destroy?"
+                    }
+                    else{
+                        echo "no approval needed, skipping.."
+                    }
+                }
+            }
+        }
+
         stage('Terraform Apply'){
             when {
                 expression{ params.apply_tf }
