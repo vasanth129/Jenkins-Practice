@@ -1,0 +1,26 @@
+pipeline{
+    agent any
+
+    parameters {
+        booleanParam(name: 'runTest', default: true)
+    }
+
+    stages {
+        stage('Build'){
+            steps{
+                sh 'echo Running Build'
+            }
+        }
+
+        stage('Test'){
+            when{
+                expression { return params.runTest}
+            }
+
+            steps{
+                sh 'echo Running Tests..'
+            }
+        }
+
+    }
+}
